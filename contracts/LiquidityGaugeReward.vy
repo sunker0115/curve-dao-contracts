@@ -31,9 +31,9 @@ interface VotingEscrow:
     def user_point_history__ts(addr: address, epoch: uint256) -> uint256: view
 
 interface CurveRewards:
-    def stake(amount: uint256): nonpayable
+    def stake(beneficiary: address, amount: uint256): nonpayable
     def withdraw(amount: uint256): nonpayable
-    def getReward(): nonpayable
+    def getRewardToken(): nonpayable
     def earned(addr: address) -> uint256: view
 
 
@@ -175,7 +175,7 @@ def _checkpoint_rewards(addr: address, claim_rewards: bool):
     d_reward: uint256 = 0
     if claim_rewards:
         d_reward = ERC20(_rewarded_token).balanceOf(self)
-        CurveRewards(self.reward_contract).getReward()
+        CurveRewards(self.reward_contract).getRewardToken()
         d_reward = ERC20(_rewarded_token).balanceOf(self) - d_reward
 
     user_balance: uint256 = self.balanceOf[addr]
@@ -358,7 +358,7 @@ def deposit(_value: uint256, addr: address = msg.sender):
         self._update_liquidity_limit(addr, _balance, _supply)
 
         assert ERC20(self.lp_token).transferFrom(msg.sender, self, _value)
-        CurveRewards(self.reward_contract).stake(_value)
+        CurveRewards(self.reward_contract).stake(self, _value)
 
     log Deposit(addr, _value)
 
