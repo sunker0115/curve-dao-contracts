@@ -2,11 +2,11 @@
 
 [Curve](https://www.curve.fi/)治理 DAO 使用 Vyper 合约编写.
 
-## 总监
+## 总览
 
 Curve DAO由[Aragon](https://github.com/aragon/aragonOS)的多个智能合约组成。与Aragon的交互是通过[Aragon Voting App](https://github.com/aragon/aragon-apps/tree/master/apps/voting)的[修改实现](https://github.com/curvefi/curve-aragon-voting)发生的。 Aragon是一种基于被锁定令牌的加权取代的投票方法标准令牌。Curve DAO具有令牌（CRV），可用于治理和价值累加。
 
-查看[documentation](doc/readme.pdf)，以获得有关Curve DAO的工作原理的更深入的说明。
+查看[documentation](doc/README.md)，以获得有关Curve DAO的工作原理的更深入的说明。
 
 ## 测试与开发
 
